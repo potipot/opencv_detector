@@ -63,9 +63,9 @@ int UltraFace::detect(cv::Mat &img, std::vector<FaceInfo> &face_list) {
 	image_h = img.rows;
 	image_w = img.cols;
 
-	if ((image_h!=in_h) or (image_w!=in_w)) {
-        cv::resize(img, img, {in_w, in_h});
-        std::cout << "Warning: Image was resized to match network input\n";
+	if (image_h/image_w != in_h/in_w) {
+//        cv::resize(img, img, {in_w, in_h});
+        std::cout << "Warning: Image aspect ratio is wrong, scaling may impact detection results.\n";
     }
 
 	std::vector<FaceInfo> bbox_collection;
